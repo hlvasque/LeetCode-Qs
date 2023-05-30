@@ -5,6 +5,8 @@
 #include <string> // getline, stoi, string
 #include <vector> // vector
 
+// CHECK IF A BINARY TREE IS BALANCED
+
 template <typename T>
 struct Node {
     T val;
