@@ -5,6 +5,9 @@
 #include <string> // getline, stoi, string, to_string
 #include <vector> // vector
 
+// SERIALIZE A BINARY TREE BY SAVING ALL OF ITS VALUES IN A VECTOR 
+// AND RECREATE/DESERIALIZE THE BINARY TREE USING THE VECTOR
+
 template <typename T>
 struct Node {
     T val;
