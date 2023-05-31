@@ -6,8 +6,17 @@
 #include <string> // getline, string
 #include <vector> // vector
 
-//find the first occurence of a number in a listed sorted in non-decreasing order 
-//where all elements have a duplicate
+/*
+"Given a sorted array of integers and a target integer, 
+find the first occurrence of the target and return its index.
+Return -1 if the target is not in the array.
+
+Input:
+
+arr = [1, 3, 3, 3, 3, 6, 10, 10, 10, 100]
+target = 3
+Output: 1"
+*/
 
 int find_first_occurrence(std::vector<int> arr, int target) {
     // WRITE YOUR BRILLIANT CODE HERE
