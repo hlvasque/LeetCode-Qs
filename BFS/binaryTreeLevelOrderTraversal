@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+ 
+ /* 
+ LeetCode Q: 102. Binary Tree Level Order Traversal
+
+"Given the root of a binary tree,
+return the level order traversal of its nodes' values. (i.e., from left to right, level by level)."
+ 
+ */
+ 
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        
+        vector<vector<int>> finalVec; 
+
+        queue<TreeNode*> temp; 
+        temp.push( root );
+        int counter = 0;  
+        while( temp.size() > 0 ){
+            int sizeM = temp.size();
+            vector<int> innerVec;  
+            for( int i = 0; i < sizeM; i ++ ){
+                if( temp.front() != nullptr ){
+                    innerVec.push_back( temp.front()->val ); 
+                    temp.push( temp.front()->left ); 
+                    temp.push( temp.front()->right );  
+                }
+                temp.pop();
+                
+            }
+            if( innerVec.size() > 0  ) finalVec.push_back( innerVec ); 
+            counter += 1; 
+
+        }
+        return finalVec; 
+    }
+};
