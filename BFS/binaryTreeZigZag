@@ -1,0 +1,68 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+ 
+ //LeetCode Q: 103. Binary Tree Zigzag Level Order Traversal
+ 
+ /*Description: "Given the root of a binary tree, 
+ return the zigzag level order traversal of its nodes' values. 
+ (i.e., from left to right, then right to left for the next level and alternate between)."*/
+
+
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+
+        vector<vector<int>> finalVec; 
+        stack<TreeNode*> stack1; 
+        if( root != nullptr ){
+            vector<int> temp; 
+            temp.push_back( root->val ); 
+            finalVec.push_back( temp ); 
+        }
+        stack1.push( root ); 
+        int counter = 1; 
+        while( stack1.size() > 0 ){
+            int mSize = stack1.size();
+            vector<int> innerVec;  
+            stack<TreeNode*> stack2; 
+            for( int i = 0; i < mSize;i ++ ){
+                if( stack1.top() != nullptr ){
+                    if( counter % 2 == 0 ){ 
+                        //if we're at an even level 
+                        //then we need to go left to right 
+                        if( stack1.top()->left != nullptr ){
+                            innerVec.push_back( stack1.top()->left->val ); 
+                        }
+                        stack2.push( stack1.top()->left ); 
+                        if( stack1.top()->right != nullptr ){
+                            innerVec.push_back( stack1.top()->right->val ); 
+                        }
+                        stack2.push( stack1.top()->right ); 
+                    }
+                    else{
+                        if( stack1.top()->right != nullptr ) innerVec.push_back( stack1.top()->right->val );
+                        stack2.push( stack1.top()->right ); 
+                        if( stack1.top()->left != nullptr ) innerVec.push_back( stack1.top()->left->val ); 
+                        stack2.push( stack1.top()->left ); 
+                    }
+                }
+                stack1.pop(); 
+            }
+            if( innerVec.size() > 0 ) finalVec.push_back( innerVec ); 
+            stack1 = stack2; 
+            counter += 1; 
+
+        }
+        return finalVec; 
+
+    }
+};
