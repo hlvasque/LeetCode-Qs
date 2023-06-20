@@ -1,0 +1,41 @@
+#include <bits/stdc++.h> 
+/*************************************************************
+ 
+    Following is the Binary Tree node structure
+
+    class BinaryTreeNode 
+    {
+        public : 
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+//Coding Ninja: Day 15 : Convert binary tree to mirror tree
+
+/*
+DESCRIPTION: You are given the root of a binary tree. 
+Convert it into its mirror tree. 
+*/
+
+*************************************************************/
+void createMirror( BinaryTreeNode<int>* curr ){
+    if( curr == NULL ) return; 
+    BinaryTreeNode<int>* ogLeft = curr->left; 
+    curr->left = curr->right; 
+    curr->right = ogLeft; 
+    createMirror( curr->left ); 
+    createMirror( curr->right ); 
+}
+
+
+void mirrorTree(BinaryTreeNode<int> *root) {
+    // Write your code here.
+    createMirror( root ); 
+}
